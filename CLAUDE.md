@@ -21,6 +21,8 @@
 ## ディレクトリ構成
 
 ```
+supabase/
+  schema.sql                properties テーブル定義 + RLS ポリシー（SQL Editor で実行）
 src/
   main.jsx                  エントリーポイント
   App.jsx                   ルーティング定義
@@ -28,11 +30,19 @@ src/
   supabaseClient.js         Supabase クライアント（.env から接続情報を読む）
   context/AuthContext.jsx   認証状態の共有（signUp / signIn / signOut）
   components/ProtectedRoute.jsx  未ログイン時に /login へリダイレクト
+  components/PropertyForm.jsx    物件の登録／編集フォーム（共通）
+  api/properties.js         properties テーブルの CRUD 関数
   pages/Login.jsx           ログイン画面
   pages/Register.jsx        会員登録画面
-  pages/Properties.jsx      物件一覧画面（要ログイン）
-  data/properties.js        物件一覧のダミーデータ
+  pages/Properties.jsx      物件一覧 + CRUD 画面（要ログイン）
 ```
+
+## データベース
+
+- テーブル: `public.properties`（`name` / `rent` / `area` / `layout` / `user_id` / `created_at` / `updated_at`）
+- `user_id` は `default auth.uid()` で登録ユーザーを自動記録
+- RLS 有効。SELECT / INSERT / UPDATE / DELETE すべて `auth.uid() = user_id` の行のみ許可
+- スキーマ変更時は `supabase/schema.sql` を更新し、Supabase の SQL Editor で再実行する（再実行可能なように書いてある）
 
 ## 開発コマンド
 

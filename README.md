@@ -31,6 +31,8 @@ npm run dev
 - Authentication > Providers で「Email」を有効化
 - 動作確認だけなら Authentication > Providers > Email の
   「Confirm email」をオフにすると、確認メールなしで即ログインできます
+- SQL Editor で `supabase/schema.sql` を実行して
+  `properties` テーブルと RLS ポリシーを作成する
 
 ## スクリプト
 
