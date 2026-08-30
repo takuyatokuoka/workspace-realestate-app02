@@ -64,6 +64,16 @@ VITE_SUPABASE_PUBLISHABLE_KEY=sb-publishable-xxxxxxxx
 
 - コメントは日本語で記載する。
 
+## デプロイ情報
+
+- 本番URL: https://プロジェクト名.vercel.app
+- Supabaseプロジェクト名: realestate-app
+- ホスティング: Vercel（Framework Preset は Vite、出力は `dist/`）
+- SPA ルーティング用に `vercel.json` で全パスを `/index.html` へ rewrite
+- 環境変数（`VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY`）は Vercel ダッシュボードの
+  Environment Variables で Production / Preview / Development に設定する。
+  変更後は Deployments から再デプロイが必要（`VITE_` 変数はビルド時に埋め込まれるため）。
+
 ## Git 運用ルール
 
 - **コードやファイルを変更するたびに、コミットして GitHub にプッシュする。**
