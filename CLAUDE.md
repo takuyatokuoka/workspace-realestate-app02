@@ -66,7 +66,7 @@ VITE_SUPABASE_PUBLISHABLE_KEY=sb-publishable-xxxxxxxx
 
 ## デプロイ情報
 
-- 本番URL: https://プロジェクト名.vercel.app
+- 本番URL: https://workspace-realestate-app02.vercel.app
 - Supabaseプロジェクト名: realestate-app
 - ホスティング: Vercel（Framework Preset は Vite、出力は `dist/`）
 - SPA ルーティング用に `vercel.json` で全パスを `/index.html` へ rewrite
