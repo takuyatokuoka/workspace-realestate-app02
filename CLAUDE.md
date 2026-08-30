@@ -4,17 +4,55 @@
 
 ## プロジェクト概要
 
-`realestate-app02` — 不動産関連 Web アプリの開発用プロジェクト（2 作目）。
-現時点ではディレクトリはほぼ空で、技術スタックは未定。
-実装を始めたら、この CLAUDE.md に「スタック」「ディレクトリ構成」「起動・テスト方法」を追記していく。
+`realestate-app02` — Supabase 認証機能付きの不動産管理 Web アプリ。
 
-### 決まり次第ここに追記する項目
+- メールアドレス＋パスワードで会員登録・ログイン
+- ログイン後は物件一覧画面（ダミーデータ）へ遷移
+- 未ログインでログイン画面へリダイレクト
+- ログアウトボタンあり
 
-- 言語 / フレームワーク（例: PHP + Laravel、Ruby on Rails、Next.js など）
-- データベース（例: MySQL、PostgreSQL、SQLite）
-- 開発サーバーの起動コマンド
-- テストの実行コマンド
-- Lint / フォーマッタの設定
+## 技術スタック
+
+- React 18 + Vite 5
+- ルーティング: react-router-dom v6
+- 認証・バックエンド: Supabase (`@supabase/supabase-js`)
+- スタイル: プレーン CSS（`src/index.css`）
+
+## ディレクトリ構成
+
+```
+src/
+  main.jsx                  エントリーポイント
+  App.jsx                   ルーティング定義
+  index.css                 全体スタイル
+  supabaseClient.js         Supabase クライアント（.env から接続情報を読む）
+  context/AuthContext.jsx   認証状態の共有（signUp / signIn / signOut）
+  components/ProtectedRoute.jsx  未ログイン時に /login へリダイレクト
+  pages/Login.jsx           ログイン画面
+  pages/Register.jsx        会員登録画面
+  pages/Properties.jsx      物件一覧画面（要ログイン）
+  data/properties.js        物件一覧のダミーデータ
+```
+
+## 開発コマンド
+
+- `npm install` — 依存インストール
+- `npm run dev` — 開発サーバー起動
+- `npm run build` — 本番ビルド（`dist/`）
+- `npm run preview` — ビルド結果のプレビュー
+
+## 環境変数
+
+`.env`（`.gitignore` 済み。コミット禁止）に以下を設定する。雛形は `.env.example`。
+
+```
+VITE_SUPABASE_URL=https://xxxxxxxx.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=sb-publishable-xxxxxxxx
+```
+
+## コーディング規約
+
+- コメントは日本語で記載する。
 
 ## Git 運用ルール
 
@@ -25,19 +63,8 @@
 - ブランチは `main`。
 - コミットメッセージは日本語で、何をしたかが分かる粒度にする。
 - コミット / プッシュは、ユーザーに確認せず変更のたびに実行してよい（このプロジェクトの明示ルール）。
-
-### 初回セットアップ（このディレクトリはまだ Git 管理下ではない）
-
-```bash
-git init
-git branch -M main
-git add -A
-git commit -m "初期コミット"
-git remote add origin <GitHub リポジトリの URL>
-git push -u origin main
-```
-
-以降は変更のたびに「add → commit → push」を繰り返す。
+- リモート: `https://github.com/takuyatokuoka/workspace-realestate-app02.git`
+- `.env` は絶対にコミットしないこと。
 
 ## 文字コードの注意
 
